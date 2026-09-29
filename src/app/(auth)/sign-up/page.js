@@ -1,6 +1,6 @@
 "use client";
 import {Eye, EyeSlash} from "@gravity-ui/icons";
-import { signUp } from "@/lib/auth-client";
+import { signIn, signUp } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {
   Button,
@@ -30,12 +30,16 @@ const SignUpPage = () => {
     });
     console.log(resData, error);
   };
-
+  const handleGoogle = async () => {
+    const resData = await signIn.social({
+      provider: "google"
+    })
+  }
   return (
     <div>
       <h1>Please, Sign Up</h1>
 
-      <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
+      <Form className="flex w-96 flex-col gap-4 mb-5" onSubmit={onSubmit}>
         <TextField
           isRequired
           name="name"
@@ -96,6 +100,8 @@ const SignUpPage = () => {
           </Button>
         </div>
       </Form>
+
+      <Button onClick={handleGoogle}>Sign in with Google</Button>
     </div>
   );
 };
