@@ -1,7 +1,7 @@
 'use client'
 import { useState } from "react";
 import { Link, Button } from "@heroui/react";
-import { useSession } from "@/lib/auth-client";
+import { signOut, useSession } from "@/lib/auth-client";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,13 +10,12 @@ export default function Navbar() {
   console.log(session);
 
   const items =
-
   <>
     {
-        session?.user ? <><h1>Wellcome, {session.user.name}</h1></> : <><Link href="#">
-        Login
-    </Link>
-    <Button>Sign Up</Button></>
+        session?.user ? <><h1>Wellcome, {session.user.name}</h1> <Button onClick={() => signOut()}>Sign Out</Button></> : <>
+    <Link href="/sign-up"><Button>Sign Up</Button></Link>
+    <Link href="/sign-in"><Button>Sign In</Button></Link>
+    </>
     }
   </>
   return (
