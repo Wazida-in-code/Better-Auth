@@ -1,5 +1,5 @@
 "use client";
-import { signUp } from "@/lib/auth-client";
+import { signIn } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {
   Button,
@@ -11,41 +11,26 @@ import {
   TextField,
 } from "@heroui/react";
 
-const SignUpPage = () => {
-  const onSubmit = async(e) => {
+const SignInPage = () => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
     // console.log(data);
 
-    const {data: resData, error} = await signUp.email({
-        name: data.name,
-        email: data.email,
-        password: data.password,
-        // callbackURL: "/"
+    const { data: resData, error } = await signIn.email({
+      email: data.email,
+      password: data.password,
+      rememberMe: true
+    //   callbackURL: "/",
     });
     console.log(resData, error);
   };
-
   return (
     <div>
-      <h1>Please, Sign Up</h1>
+      <h1>Please, Sign-In</h1>
 
       <Form className="flex w-96 flex-col gap-4" onSubmit={onSubmit}>
-        <TextField
-          isRequired
-          name="name"
-          validate={(value) => {
-            if (value.length < 3) {
-              return "Name must be at least 3 characters";
-            }
-            return null;
-          }}
-        >
-          <Label>Name</Label>
-          <Input placeholder="John Doe" />
-          <FieldError />
-        </TextField>
         <TextField
           isRequired
           name="email"
@@ -100,4 +85,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default SignInPage;
