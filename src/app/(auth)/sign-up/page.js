@@ -34,6 +34,12 @@ const SignUpPage = () => {
     const resData = await signIn.social({
       provider: "google"
     })
+  };
+
+  const handleGithub = async () => {
+    const gitData = await signIn.social({
+      provider: "github"
+    })
   }
   return (
     <div>
@@ -102,6 +108,7 @@ const SignUpPage = () => {
       </Form>
 
       <Button onClick={handleGoogle}>Sign in with Google</Button>
+      <Button onClick={handleGithub}>Sign in with Github</Button>
     </div>
   );
 };
