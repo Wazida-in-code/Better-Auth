@@ -1,4 +1,5 @@
 "use client";
+import { requestPasswordReset } from "@/lib/auth-client";
 import { Check } from "@gravity-ui/icons";
 import {
   Button,
@@ -17,6 +18,11 @@ const ForgotPasswordPage = () => {
         const formData = new FormData(e.currentTarget);
         const userData = Object.fromEntries(formData.entries());
         console.log(userData);
+
+        const resData = await requestPasswordReset({
+            email: userData.email,
+            redirectTo: '/reset-password'
+        })
     }
   return (
     <div>
