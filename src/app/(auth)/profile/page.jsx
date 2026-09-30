@@ -14,6 +14,7 @@ import {
   Label,
   TextArea,
   TextField,
+  toast,
 } from "@heroui/react";
 import { date } from "better-auth";
 import { useState } from "react";
@@ -29,6 +30,7 @@ export default function ProfilePage() {
     const resData = await updateUser({
         name: userdata.name
     })
+    toast.success("Name Updated!")
         console.log(resData);
     // alert("Form submitted successfully!");
 

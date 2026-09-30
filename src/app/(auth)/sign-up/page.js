@@ -13,6 +13,7 @@ import {
   TextField,
 } from "@heroui/react";
 import { useState } from "react";
+import Link from "next/link";
 
 const SignUpPage = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,7 +29,7 @@ const SignUpPage = () => {
         password: data.password,
         // callbackURL: "/"
     });
-    console.log(resData, error);
+    console.log("after sign up",resData, error);
   };
   const handleGoogle = async () => {
     const resData = await signIn.social({
@@ -109,6 +110,9 @@ const SignUpPage = () => {
 
       <Button onClick={handleGoogle}>Sign in with Google</Button>
       <Button onClick={handleGithub}>Sign in with Github</Button>
+      <p className="mt-3"><small>Forgot Password 
+        <Link href="/forgot-password" className="text-blue-500 underline">Click Here</Link>
+        </small></p>
     </div>
   );
 };
